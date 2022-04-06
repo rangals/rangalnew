@@ -1,0 +1,191 @@
+
+header{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    padding: 1em;
+  }
+  
+  header, .brand, .toggle, .menu{
+    display: flex;
+    flex-direction: row;
+  }
+
+/*--------------------------------------- Brand Style ----------------------------------------------*/
+
+.brand, .toggle{
+   align-items: center;
+}
+
+.brandName{
+    color: #170eb6;
+    font-size: max(1.1em,3vw);
+    margin: 1px;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.dark .brandName{
+    color: #fff;
+}
+
+/*--------------------------------------- Toggle Style ----------------------------------------------*/
+.mode{
+    width: 20px;
+    height: 20px;
+    content: "";
+    background: linear-gradient(90deg, #fff 0%, #fff 45%,#000,#555 , 55%,#000 100%, transparent);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 1px;
+    cursor: pointer;
+}
+
+.mode input{
+    appearance: none;
+}
+
+.toggle{
+    justify-content: center;
+}
+
+/*--------------------------------------- Menu Style ----------------------------------------------*/
+
+.menu{
+    height: 5em;
+    padding-right: 3em;
+    align-items: center;
+}
+
+.menu a{
+    color: #0e17ea;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.dark .menu a{
+    color: #fff;
+}
+
+.menu ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: .5s;
+}
+.menu ul li:hover::after{
+    width: 100%;
+}
+
+
+.navlinks{
+    list-style: none;
+    display: flex;
+    align-items: center;  /* align height wise*/
+    border: 15px;
+    justify-content: space-between;
+}
+
+
+.mobile-menu{
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    /* margin-left: -2000px; */
+}
+
+.menu-index{
+    z-index: 1;
+}
+
+.menu-back{
+    background-image:none;
+}
+
+.hideContent{
+    display: none;
+}
+
+
+/*--------------------------------------------Media Query-------------------------------------*/
+
+@media only screen and (max-width: 700px){
+    
+    .logoIntro svg{
+        width: 50px;
+    }
+    .logoAnim{
+        font-size: 3em;
+    }
+
+    .displayNone{
+        display: none;
+    }
+
+    .displayBlock{
+        display: block;
+    }
+
+    .zindex{
+        z-index: 1;
+    }
+    
+    header{
+        flex-direction: column;
+    }
+    .toggle{
+        width: 80%;
+    }
+
+    .menu{
+        position:absolute;
+        width: 100%;
+    }
+
+    .menu a{
+        color: #fff;
+    }
+
+    .navlinks{
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        margin-left: -2000px;
+        transition: .5s ease;
+        padding-left: 0;
+    }
+    
+    .navlinks li{
+        margin: auto;
+        
+    }
+
+    .mobile-menu{
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        margin-left: 0px;
+    }
+    
+    .menu-index{
+        z-index: 2;
+    }
+    
+    .menu-back{
+        background-image:linear-gradient(rgba(4,9,30,.9), rgba(4,9,30,1));
+        width: 200px;
+        height: 100%;
+        top: 0;
+        right: 0;
+        padding: 0;
+    }
+
+    .toggle{
+        z-index: 1;
+    }
+}

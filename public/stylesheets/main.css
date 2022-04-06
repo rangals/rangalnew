@@ -1,0 +1,112 @@
+
+@import 'shared/variables.css';
+@import 'shared/fonts.css';
+
+@import 'shared/header.css';
+@import 'shared/footer.css';
+@import 'shared/homepage.css';
+@import 'shared/aboutpage.css';
+@import 'shared/loginpage.css';
+
+@import 'shared/logo.css';
+@import 'shared/closeButton.css';
+@import 'shared/tooltip.css';
+@import 'shared/intro.css';
+
+/*@import 'shared/buttons.css';
+@import 'shared/form.css';
+@import 'shared/author.css';
+@import 'shared/books.css'; */
+
+:root {
+  font-family: 'Gotham Rounded';
+  font-size: 20px;
+  color: var(--color-text-light);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: hsl(var(--color-danger-hue), 100%, 50%);
+}
+
+body{
+  margin: 0;
+  
+  /* font-family: sans-serif; */
+}
+
+a{
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 15% 5%;
+  position: relative;
+}
+
+
+.container{
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(5deg, rgb(120 193 209) 0%, rgb(113 190 207) 19%, rgb(80 207 247) 34%, rgb(95 218 241) 60%, rgb(109 188 205) 86%, rgb(231 243 245) 100%);
+    /* linear-gradient(5deg, rgb(13 19 147) 0%, rgb(152 193 231) 19%, rgb(80 207 247) 34%, rgb(95 218 241) 60%, rgb(109 188 205) 86%, rgb(231 243 245) 100%); */
+  /* z-index: 1; */
+}
+.dark.container{
+  background: linear-gradient(180deg, rgba(9,9,9,1) 0%, rgba(6,6,34,1) 28%, rgba(10,10,76,1) 43%, rgba(17,55,127,1) 62%, rgba(29,104,172,1) 78%, rgb(8 8 12) 94%, rgb(9 9 10) 100%);
+  /* linear-gradient(180deg, rgba(9,9,9,1) 0%, rgba(6,6,34,1) 28%, rgba(10,10,76,1) 43%, rgba(17,55,127,1) 62%, rgba(29,104,172,1) 78%, rgba(80,186,208,1) 94%, rgba(203,228,233,1) 100%); */
+}
+
+.txtInput {
+  position: relative; 
+  display: inline-block; 
+  margin: 8px;
+}
+
+.txtInput lbl {
+  width: auto;
+  height: auto;
+  padding: 0 5px;
+  position: absolute; 
+  top: -10px;
+  left: 5px;
+  background: #fff;
+  font-weight: 600;
+  font-size: .9em;
+  color: #15e;
+}
+
+.txtInput input {
+  text-align: left;
+  width: 15em;
+  height: 2em; 
+  outline: solid #15e 1px; 
+  padding: 5px 10px 0;
+  font-size: 1em;
+}
+
+.txtInput input:focus {
+  outline: solid #1b1 1px; 
+}
+
+.txtInput input:focus ~ lbl{
+  color: #1b1;
+}
+
+.loginInput{
+  text-align: left;
+  width: 15em;
+  height: 2em;
+  outline: 1px solid #04aa6d;
+  background: #0e0707b0;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 5px 10px;
+  font-size: 1em;
+}

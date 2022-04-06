@@ -1,0 +1,64 @@
+.intro.container{
+    opacity: 1;
+}
+
+/* .container{
+    opacity: 1;
+    transition: 2s ease-in;
+    overflow: hidden;
+} */
+
+.intro header{
+    opacity: 0;
+}    
+
+.intro .closeButton{
+    opacity: 0;
+}
+
+.intro .content{
+    opacity: 0;
+}
+
+.noIntro .logoIntro{
+    display: none;
+}
+
+.intro .logoIntro{
+    opacity: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(5deg, rgb(88 165 75) 0%, rgb(113 190 207) 19%, rgb(80 207 247) 34%, rgb(95 218 241) 60%, rgb(109 188 205) 86%, rgb(210 95 95) 100%);
+    color: #0f6911;
+}
+
+.logoAnim{
+    display: flex;
+    align-items: center;
+    font-size: 5em;
+    color: #091556;
+}
+
+.logoIntro svg{
+    width: 90px;
+}
+
+.endIntro .logoAnim span, .endIntro h1{
+    opacity: 0;
+    transition: .5s ease-in;
+}
+
+.endIntro .logoR{
+    transform: translate(-230%,-200%) scale(0.1);
+    transition: 1s ease-in;
+}
+.endIntro .logoS{
+    transform: translate(-160%,-300%) scale(0.1);
+    transition: 1s ease-in;
+}

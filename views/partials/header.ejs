@@ -1,0 +1,36 @@
+<header>
+    <div class="brand">
+        <div class="logo ">
+            <%- include('../partials/logo.ejs') %>
+        </div>
+        <div class="brandName">Rangal Softwares</div>
+    </div>
+
+    <div class="toggle">
+        <div>
+            <!-- <label>Language:
+            <div class="lang">
+                <select onchange="changeLang()">
+                    <option value="english">English</option>
+                    <option value="tamil">Tamil</option>
+                </select>
+            </div>
+        </label> -->
+        </div>
+        <div>
+            <label>
+                <div class="mode">
+                    <input onclick="changeMode()" type="checkbox" />
+                </div>
+            </label>
+        </div>
+    </div>
+    <nav class="menu">
+        <ul class="navlinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About&nbsp;Us</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>      
+    </nav>
+</header>
+<%- include('../partials/closeButton.ejs') %>

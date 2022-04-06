@@ -1,0 +1,142 @@
+
+.container{
+    opacity: 1;
+    transition-delay: 3s;
+    transition: 2s ease-in;
+    /* overflow: hidden; */
+}
+
+.dark .moon{
+    position: absolute;
+    width: 120px;
+    height: 110px;
+    aspect-ratio: 1;
+    background-image: url(../../images/Moon.png);
+    top: 10%;
+    left: 70%;
+    z-index: -1;
+    background-size: cover;
+    opacity: .9;
+}
+
+.dark .flight{
+    display: none;
+}
+
+.flight{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    perspective: 10px;
+    z-index: -1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.flight1, .flight2, .flight3{
+    position: absolute;
+    /* object-fit: cover; */
+    opacity: .5;
+}
+
+.flight1{
+    background-image: url(../../images/Flight1.png);
+    top:5%;
+    left: 5%;
+    width: 370px;
+    height: 110px;
+    transform: translateZ(-10px) scale(2);
+}
+  /* Add Zoom Animation */
+  .animate-in {
+    animation: animatezoom 0.6s;
+ }
+
+ .animate-moveleft {
+   animation: move 240s ease; 
+}
+
+.animate-moveleft1 {
+   animation: move 180s ease; 
+}
+/* 
+.animate-moveleft2 {
+   animation: move 120s ease; 
+} */
+
+ 
+ @-webkit-keyframes animatezoom {
+   from {-webkit-transform: scale(0)} 
+   to {-webkit-transform: scale(1)}
+ }
+   
+ @keyframes animatezoom {
+   from {transform: scale(0)} 
+   to {transform: scale(1)}
+ }
+
+ @-webkit-keyframes move {
+   from {transform: translate(10px);}  
+   to {
+       transform: translate(-500px, 100px);
+   }
+ }
+ @keyframes move {
+   from {transform: translate(10px);} 
+   to {transform: translate(-500px, 100px);}
+ }
+
+/*--------------------------------------- Content Style ----------------------------------------------*/
+.content{
+    display: flex;
+    flex-direction: row;
+    height: 70%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #170eb6;;
+    font-size: 1.2em;
+}
+
+.dark .content{
+    color: #fff;
+}
+
+.mainContent{
+    text-align: center;
+}
+
+.mainContent p:first-child{
+    font-size: 2em;
+    text-shadow: 1px -1px 7px #fff;
+}
+
+.hero-btn{
+    /* display: inline-block; */
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: 1s linear;
+}
+
+.hero-btn:hover{
+    background:#800080;
+}
+
+/*--------------------------------------------Media Query-------------------------------------*/
+
+@media only screen and (max-width: 700px){
+    .content{
+        font-size: 1em;
+        padding-top:2em ;
+    }
+
+    .mainContent p:first-child{
+        font-size: 1.5em;
+    }
+}

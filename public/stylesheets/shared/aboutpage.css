@@ -1,0 +1,126 @@
+.aboutPage{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1em;
+    /* display: flex;
+    flex-direction: row; */
+    justify-items: center;
+}
+.card {
+    border: 1px solid #03020d;
+    font-size: .8em;
+    background: #2813bb;
+    color: white;
+    box-shadow: 1px 6px 6px 2px #a4a9cd;
+    padding: 1em;
+    margin-left: 2em;
+    border-radius: 0.3em;
+}
+
+/*---------------------------------------------------	Profile   -----------------------------------	 */
+.profile {
+    min-width: 14em;
+    /* margin-top: -2em; */
+    background: #0c7ad2;
+    
+}
+
+.profile i {
+    padding-right: .5em;
+    font-size: 1em;
+    color: #fff;
+}
+
+.profile div {
+    margin-bottom: .2em;
+    
+}
+
+.profileInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.profileHead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding-bottom: 1em;
+}
+
+.profilePic {
+    width: 100px;
+    height: 7em;
+    border-radius: 50%;
+    background: url(../../images/Barani.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.profilePic+span {
+    font-size: 1.5em;
+}
+
+/*---------------------------------------------------	About   -----------------------------------	 */
+.abtDetails, .abtServices {
+    max-width: 40em;
+    margin: 1em;
+    border-left: 10px double #ffff00;
+}
+
+.abtDetails > span, .abtServices > span{
+    font-size: 2em;
+    padding-bottom: 1em;
+    color: #ffff00;
+}
+.abtDetails .abtMsg{
+    font-size: 1.2em;
+    line-height: 1.4em;
+    padding: 1em;
+    text-align: justify;
+    text-indent: 3em;
+}
+
+.abtDetails > div:last-child{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1em;
+    margin: 1em;
+    margin-right: 0em;
+    font-size: 1em;
+    line-height: 1.2em;
+}
+.serviceTiles{
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.serviceTiles div{
+    background: #491f6a;
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    text-align: center;
+    width: auto;
+    box-shadow: 1px 2px 5px 2px #8edfe3;
+}
+
+.serviceTiles div:hover{
+    transform: scale(1.2);
+    background: #999922;
+}
+
+@media (max-width: 900px){
+    .aboutPage{
+        grid-template-columns: 1fr;
+    }
+
+    .profile {
+        margin-bottom: 1em;
+    }
+}
