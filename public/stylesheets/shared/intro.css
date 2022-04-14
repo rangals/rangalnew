@@ -62,3 +62,13 @@
     transform: translate(-160%,-300%) scale(0.1);
     transition: 1s ease-in;
 }
+
+@media screen and (max-width: 700px) {
+    .logoAnim{
+        
+        font-size: 3em;
+        
+    }
+    
+  }
+  

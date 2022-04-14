@@ -5,20 +5,16 @@
   const express = require('express')
   const cors = require("cors");
   const expressLayouts = require('express-ejs-layouts')
-
+  const app = express();
    
 //   const bodyParser = require('body-parser')
 //   const methodOverride = require('method-override')
   
-  const indexRouter = require('./app/routes/index.js')
-  const aboutRouter = require('./app/routes/about.js')
-  const loginRouter = require('./app/routes/login.js')
-//   const bookRouter = require('./routes/books')
   
   var corsOptions = {
     origin: "http://localhost:8081"
   };
-  const app = express()
+  
   app.use(cors(corsOptions));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -37,9 +33,20 @@
 //   db.on('error', error => console.error(error))
 //   db.once('open', () => console.log('Connected to Mongoose'))
   
-  app.use('/', indexRouter)
-  app.use('/about', aboutRouter)
-  app.use('/login', loginRouter)
+  // app.use('/', indexRouter)
+  // app.use('/about', aboutRouter)
+  
 //   app.use('/books', bookRouter)
   
+// const loginRouter = require('./app/routes/login.routes')
+// app.use('/login', loginRouter)
+
+require('./app/routes/index.routes')(app)
+require('./app/routes/about.routes')(app)
+require('./app/routes/login.routes')(app)
+
+// require('./app/routes/auth.routes')(app)
+//   const bookRouter = require('./routes/books')
+
   app.listen(process.env.PORT || 3000)
+  console.log('Server started at '+ (process.env.PORT || 3000));

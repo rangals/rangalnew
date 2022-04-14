@@ -1,5 +1,4 @@
 
-
 let lastLogin = new Date().toDateString();
 let getLastLogin = localStorage.getItem("lastLogin");
 
@@ -51,17 +50,25 @@ btn.addEventListener('click',()=>{
     // if(abtProfile) viewBtn.classList.toggle('zindex');
 })
 
-function myFunction(ctrl) {
+function copyData(ctrl) {
     let val='';
     if (ctrl ==='ttEmail')	
         val = 'rangalsoftwares@gmail.com'
     else if(ctrl === 'ttContact')
         val = '+91 6374694979'
-    
-    // var copyText = document.querySelector("#"+ ctrl + " + span");
-    // copyText.select();
-    // copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(val);
+    else{
+        var copyText = document.querySelector("#"+ ctrl + " + span");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+    }
+
+    var k = document.createElement('input');
+    k.value = val;
+    document.body.appendChild(k);
+    k.select();
+    document.execCommand('copy');
+    // navigator.clipboard.writeText(val);
+    document.body.removeChild(k);
     
     var tooltip = document.querySelector("#"+ ctrl);
     tooltip.innerText = "Copied: " + val;
@@ -70,4 +77,31 @@ function myFunction(ctrl) {
 function outFunc(ctrl) {
     var tooltip = document.querySelector("#"+ ctrl);
     tooltip.innerText = "Click to Copy";
+}
+
+
+function userRegistration(){
+    let pwd = document.getElementsByName('txtLoginPwd')[0].value;
+    let pwd2 = document.getElementsByName('txtRegPwd2')[0].value;
+
+    if(pwd !== pwd2){
+        alert('Password not matched', pwd, pwd2);
+        return false;
+    }
+    return true;
+}
+
+function showMsg(msg){
+    alert(msg);
+    const toast = new Toast({
+        position: "top-right" , 
+        text: msg,
+        autoClose:false , 
+        showProgress: false,
+        // onClose: ()=> alert("closed"),
+        canClose: true,
+        pauseOnHover:true,
+        pauseOnFocusLoss: true,
+        toastType: 'info'//success, error, info
+    });
 }

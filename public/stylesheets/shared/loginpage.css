@@ -43,7 +43,8 @@
 
 span.psw,
 span.psw a,
-span.resendOTP a {
+span.resendOTP a,
+.getOTP {
   font-weight: bolder;
   font-size: 0.9em;
   color: white;
@@ -52,6 +53,10 @@ span.resendOTP a {
 
 .logoleft {
   width: 16em;
+}
+
+.getOTP{
+  font-weight: 100;
 }
 
 /* The Modal (background) */
@@ -79,7 +84,8 @@ span.resendOTP a {
   /* border-radius: 15px; */
   /* box-shadow: 4px 2px 5px 3px #a39f9f; */
   width: 70%;
-  height: 80%;
+  height: auto;
+  padding: 1em;
   display: flex;
   flex-direction: row;
   row-gap: 1em;

@@ -102,6 +102,22 @@
     color: #fff;
 }
 
+.loginUser{
+    text-align: right;
+    margin: 0;
+    padding-right: 3em;
+    margin-top: -2em;
+    color: #685329;
+    font-size: 1em;
+    font-weight: 600;
+    text-shadow: 1px -1px 7px #999;
+}
+
+.dark .loginUser{
+    color: #e3a529;
+    text-shadow: 1px -1px 7px #090909;
+}
+
 .mainContent{
     text-align: center;
 }
@@ -138,5 +154,9 @@
 
     .mainContent p:first-child{
         font-size: 1.5em;
+    }
+
+    .loginUser{
+        margin-top: -1em;
     }
 }

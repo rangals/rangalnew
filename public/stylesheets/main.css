@@ -12,6 +12,7 @@
 @import 'shared/closeButton.css';
 @import 'shared/tooltip.css';
 @import 'shared/intro.css';
+@import 'shared/Toast.css';
 
 /*@import 'shared/buttons.css';
 @import 'shared/form.css';
@@ -53,7 +54,7 @@ ul li {
 .container{
   position: relative;
   height: 100vh;
-  background: linear-gradient(5deg, rgb(120 193 209) 0%, rgb(113 190 207) 19%, rgb(80 207 247) 34%, rgb(95 218 241) 60%, rgb(109 188 205) 86%, rgb(231 243 245) 100%);
+  background: linear-gradient(90deg, rgb(120 193 209) 0%, rgb(113 190 207) 19%, rgb(80 207 247) 34%, rgb(95 218 241) 60%, rgb(203 220 223) 86%, rgb(92 195 212) 100%);
     /* linear-gradient(5deg, rgb(13 19 147) 0%, rgb(152 193 231) 19%, rgb(80 207 247) 34%, rgb(95 218 241) 60%, rgb(109 188 205) 86%, rgb(231 243 245) 100%); */
   /* z-index: 1; */
 }
