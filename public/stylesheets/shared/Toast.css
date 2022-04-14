@@ -1,0 +1,89 @@
+
+.toast{
+    box-sizing: border-box;
+    padding: .5rem;
+    background: var(--toastBG);
+    border:1px solid var(--toastType);
+    border-radius: .25rem;
+    border-left: 10px solid var(--toastType);
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 1.2em;
+    transition: transform 250ms ease-in-out;
+    overflow: hidden;
+}
+
+.dark .toast{
+    border:1px solid #fff;
+    border-left: 10px solid var(--toastType);
+    background: linear-gradient(30deg, rgb(15, 15, 15) 0%, rgb(32, 32, 32) 2%, rgb(51, 50, 50) 100%);
+    color: #fff;
+}
+
+.toast-container[data-position$="-left"] .toast{
+    transform: translateX(-110%);
+}
+
+.toast-container[data-position$="-right"] .toast{
+    transform: translateX(110%);
+}
+
+.toast-container[data-position="top-center"] .toast{
+    transform: translateY(-100vh);
+}
+
+.toast-container[data-position="bottom-center"] .toast{
+    transform: translateY(100vh);
+}
+
+.toast-container .toast.show{
+    transform: translate(0,0);
+}
+
+.toast.can-close::after{
+    content: "\00D7"; /* html entity code times or html symbols or css code */
+    position: absolute;
+    top: 2px;
+    right: 5px;
+}
+
+.toast.progress::before{
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: calc(100% * var(--progress)); /*calc(100% * var(--progress, .5));default value is 50 */
+    background-color: var(--toastType);
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.toast-container{
+    position: fixed;
+    margin: 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.toast-container[data-position^="top-"]{ /* ^ => anything starts with */
+    top:0;
+}
+.toast-container[data-position$="-right"]{ /* $ =>anything ends with */
+    right:0;
+}
+.toast-container[data-position^="bottom"]{
+    bottom: 0;
+}
+.toast-container[data-position$="-left"]{
+    left: 0;
+}
+.toast-container[data-position$="-center"]{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+

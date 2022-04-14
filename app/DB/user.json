@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "uname": "newuser",
+      "id": 13,
+      "pwd": "$2a$08$4ZIXavVyGRUf5uQ1nW0douFTHD8vkJ.5kIaMQuHz2i2ZsmvPHKp/K",
+      "email": "new@ga.com",
+      "mobile": ""
+    },
+    {
+      "uname": "Barani",
+      "pwd": "$2a$08$1mM733KiTg0MaYIUZ2jokuQ99gR8pQAjGc1bcJW76SF6aSUjNJvNa",
+      "firstName": "Barani",
+      "lastName": "Barani",
+      "email": "bara@gs.cm",
+      "phone": "",
+      "otp": "",
+      "mobile": ""
+    },
+    {
+      "uname": "Barani",
+      "pwd": "$2a$08$bahJKhOuLVLBGJgBHgUR0Oz/sQFIl5eeZZSDMJkLmZq8cJGW3yxkS",
+      "firstName": "Barani",
+      "lastName": "Barani",
+      "email": "bara@gs.cm",
+      "phone": "",
+      "otp": "",
+      "mobile": ""
+    }
+  ]
+}
