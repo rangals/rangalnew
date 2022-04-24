@@ -9,10 +9,10 @@
 @import 'shared/loginpage.css';
 
 @import 'shared/logo.css';
-@import 'shared/closeButton.css';
-@import 'shared/tooltip.css';
+@import 'shared/components/closeButton.css';
+@import 'shared/components/tooltip.css';
 @import 'shared/intro.css';
-@import 'shared/Toast.css';
+@import 'shared/components/Toast.css';
 
 /*@import 'shared/buttons.css';
 @import 'shared/form.css';

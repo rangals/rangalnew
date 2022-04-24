@@ -1,4 +1,6 @@
-const controller = require("../controllers/user.controller");
+
+const { authJwt } = require("../middleware");
+const logincontroller = require("../controllers/login.controller");
 module.exports = function(app) {
     app.use(function(req, res, next) {
       res.header(
@@ -7,6 +9,6 @@ module.exports = function(app) {
       );
       next();
     });
-    app.get("/", controller.getIndexPage);
+    app.get("/",authJwt.checkToken, logincontroller.getIndexPage);
     
   };

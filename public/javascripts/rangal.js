@@ -91,13 +91,13 @@ function userRegistration(){
     return true;
 }
 
-function showMsg(msg){
-    alert(msg);
+function showMsg(msg, time = 0){
+    
     const toast = new Toast({
         position: "top-right" , 
         text: msg,
-        autoClose:false , 
-        showProgress: false,
+        autoClose: time > 0? time*1000: false , 
+        showProgress: time > 0,
         // onClose: ()=> alert("closed"),
         canClose: true,
         pauseOnHover:true,
@@ -105,3 +105,8 @@ function showMsg(msg){
         toastType: 'info'//success, error, info
     });
 }
+
+document.addEventListener("onload",()=>{
+    alert("entered");
+    // console.log(req.url);
+});

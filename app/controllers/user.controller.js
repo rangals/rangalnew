@@ -6,20 +6,12 @@ var userFile = "././app/DB/user.json";
 let user = {uname: '', pwd: '', firstName : '',
             lastName : '', email : '', phone : ''};
 
-exports.getIndexPage = async (req,res) =>{
-    res.status(200).render('index', {name: user.uname});
-}
-
-exports.getLoginPage = async (req,res) =>{
-    res.render('login',{data:user, msg:''});
-}
-
 exports.getRegisterPage = async (req,res) =>{
-    res.status(200).render('login/register',{data:user, msg:''});
+    res.render('login/register',{data:user, msg:''});
 }
 
 exports.getForgotPage = async (req,res) =>{
-  res.status(200).render('login/forgot',{data:user, msg:''});
+  res.render('login/forgot',{data:user, msg:''});
 }
 
 
@@ -35,8 +27,6 @@ exports.registerUser = async (req, res) =>{
 
     user.pwd = bcrypt.hashSync(user.pwd, 8),
 
-    console.log(user);
-
     fs.readFile(userFile, (err, data) => {
         if (err) {
           return console.log(err);
@@ -44,9 +34,11 @@ exports.registerUser = async (req, res) =>{
         // let val = data.toString();
         let valjson = JSON.parse(data);
     
-        let usr = valjson["users"].find((c) => c.name === user.uname);
+        let usr = valjson["users"].find((c) => c.uname === user.uname);
         //console.log(usr);
         if (!usr) {
+    //       res.render('login/register',{data:user, msg:'in progress!'});
+    // return;
           let lastUser = getMax(valjson["users"], "id");
           let usrid = parseInt(lastUser.id) + 1;
     

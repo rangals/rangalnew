@@ -1,8 +1,9 @@
 // const express = require('express')
 // const router = express.Router()
 
-const { authJwt } = require("../middleware");
+// const { authJwt } = require("../middleware");
 const usercontroller = require("../controllers/user.controller");
+const logincontroller = require("../controllers/login.controller");
 const authcontroller = require("../controllers/auth.controller");
 
 module.exports = function(app) {
@@ -13,13 +14,13 @@ module.exports = function(app) {
     );
     next();
   });
-  app.get("/login", usercontroller.getLoginPage);
+  app.get("/login", logincontroller.getLoginPage);
   app.get("/login/register", usercontroller.getRegisterPage);
   app.get("/login/forgot", usercontroller.getForgotPage);
   app.post("/login", authcontroller.loginUser);
   app.post("/login/register", usercontroller.registerUser);
-  app.post("/login/forgot", usercontroller.forgotUser);
-  app.get("/login/getOTP", async (req, res) => {console.log('print OTP'); res.render('login/register')});
+  // app.post("/login/forgot", usercontroller.forgotUser);
+  // app.get("/login/getOTP", async (req, res) => {console.log('print OTP'); res.render('login/register')});
   
   // app.get(
   //   "/api/test/user",

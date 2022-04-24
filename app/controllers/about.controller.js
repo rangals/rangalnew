@@ -1,3 +1,5 @@
 exports.getAboutPage = async (req,res) =>{
-    res.status(200).render('about');
+    let uname = '';
+    if(req.uname) uname = req.uname;
+    res.status(200).render('about', {name : uname});
 }

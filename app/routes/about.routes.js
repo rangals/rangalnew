@@ -1,3 +1,5 @@
+const { authJwt } = require("../middleware");
+
 const controller = require("../controllers/about.controller");
 module.exports = function(app) {
     app.use(function(req, res, next) {
@@ -7,6 +9,7 @@ module.exports = function(app) {
       );
       next();
     });
-    app.get("/about", controller.getAboutPage);
+    // app.get("/about",authJwt.verifyToken, controller.getAboutPage);
+    app.get("/about", authJwt.checkToken, controller.getAboutPage);
     
   };
