@@ -21,8 +21,9 @@
             <form method="post" action="register" onsubmit="return userRegistration();">
 
                 <%- include('../_login.ejs') %>   
+                <%- include('../_retypePwd.ejs') %>   
+                <%- include('../_register.ejs') %>  
                 <%- include('../_resetPwd.ejs') %>   
-                <%- include('../_register.ejs') %>   
                 <div class="loginSubmit">
                     <a href="/login" class="cancelbtn" >Cancel</a>
                     <button type="submit" >Register</button>

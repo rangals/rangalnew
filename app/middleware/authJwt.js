@@ -15,6 +15,19 @@ checkToken = (req, res, next) =>{
   });
 }
 
+getOTPData = (req) =>{
+  
+  let accessToken = req.cookies.otp;
+  let data ={}; //This has to be declared outside of jwt.verify. otherwise it will not return anything
+  jwt.verify(accessToken, config.secret, (err, decoded) => {
+    if (!err) {
+      data.uname = decoded.id.uname;
+      data.otp = decoded.id.otp;
+    }
+  });
+  return data;
+}
+
 verifyToken = (req, res, next) => {
   let accessToken = req.cookies.jwt;
  
@@ -46,6 +59,7 @@ const authJwt = {
     verifyToken: verifyToken,
     getToken: getToken,
     checkToken: checkToken,
+    getOTPData: getOTPData,
     // isAdmin: isAdmin,
     // isModerator: isModerator,
     // isModeratorOrAdmin: isModeratorOrAdmin

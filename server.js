@@ -9,6 +9,7 @@
   const cookieParser = require("cookie-parser");
   const app = express();
    
+  const PORT = config.PORT;
 //   const bodyParser = require('body-parser')
 //   const methodOverride = require('method-override')
   
@@ -63,5 +64,5 @@ require('./app/routes/login.routes')(app)
 // require('./app/routes/auth.routes')(app)
 //   const bookRouter = require('./routes/books')
 
-  app.listen(process.env.PORT || 3000)
-  console.log('Server started at '+ (process.env.PORT || 3000));
+  app.listen(process.env.PORT || PORT)
+  console.log('Server started at '+ (process.env.PORT || PORT));

@@ -15,7 +15,7 @@ exports.loginUser = async (req, res) =>{
     // return;
     fs.readFile(userFile, (err, data) => {
         if (err) {
-          return console.log(err);
+          return res.render('login',{data:user, msg:err});
         }
         // let val = data.toString();
         // console.log(val);
@@ -41,13 +41,10 @@ exports.loginUser = async (req, res) =>{
           // req.session.user =  user.uname;
           // req.session.accessToken = token;
 
-          const oneDayToSeconds = 24 * 60 * 60;
+          const oneDayToSeconds = 60 * 60 * 60;
           res.cookie("jwt", token, {maxAge: oneDayToSeconds, httpOnly: true, secure: process.env.NODE_ENV === 'production'? true: false})//{secure: false, 
-          
-          res.render('index', {name: user.uname, accessToken: token});
-          // res.send('loggedin');
+          res.render('index', {data: user});
+          return;
         }
-        // res.send(usr);
-      });
-    // res.sendStatus(200).render('login');
+      });  
 }

@@ -13,8 +13,7 @@ exports.getIndexPage = async (req,res) =>{
     fs.readFile(file, (err, data) => {
 
         if (err) {
-            console.log(err)
-          res.render('index', {name: user.uname});
+          res.render('index', {'data': user, 'msg': err});
           return;
         }
 
@@ -26,7 +25,7 @@ exports.getIndexPage = async (req,res) =>{
         if (!viewer || viewer == undefined) {
           valjson[ipAddress] = {"count":1, "date": new Date()};
           fs.writeFile(file, JSON.stringify(valjson), (err) => {
-            if (err) throw err;
+            if (err) return res.render('index', {'data': user, 'msg': err});
           });
         } 
         else {
@@ -41,15 +40,23 @@ exports.getIndexPage = async (req,res) =>{
                 });
             }
         }
+        res.render('index', {'data': user,  'msg':''});
       });
 
-    res.render('index', {name: user.uname, accessToken : ''});
+    
+}
+
+exports.getLogoutPage = async (req, res)=>{
+  res.clearCookie('jwt');
+  let user = {}
+  res.render('index',{data:user, msg:''});
 }
 
 exports.getLoginPage = async (req,res) =>{
   let user = {uname: '', pwd: '', firstName : '',
   lastName : '', email : '', phone : ''};
-    res.render('login',{data:user, msg:'', accessToken : ''});
+  if(req.uname) user.uname = req.uname;
+    res.render('login',{data:user, msg:''});
 }
 
 const saveData = (data) => {

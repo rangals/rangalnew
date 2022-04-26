@@ -5,6 +5,7 @@
 const usercontroller = require("../controllers/user.controller");
 const logincontroller = require("../controllers/login.controller");
 const authcontroller = require("../controllers/auth.controller");
+const { authJwt } = require("../middleware");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -14,13 +15,15 @@ module.exports = function(app) {
     );
     next();
   });
-  app.get("/login", logincontroller.getLoginPage);
+  app.get("/login",authJwt.checkToken, logincontroller.getLoginPage);
+  app.get("/logout",authJwt.checkToken, logincontroller.getLogoutPage);
   app.get("/login/register", usercontroller.getRegisterPage);
   app.get("/login/forgot", usercontroller.getForgotPage);
   app.post("/login", authcontroller.loginUser);
   app.post("/login/register", usercontroller.registerUser);
-  // app.post("/login/forgot", usercontroller.forgotUser);
-  // app.get("/login/getOTP", async (req, res) => {console.log('print OTP'); res.render('login/register')});
+  app.post("/login/forgot", usercontroller.forgotUser);
+  app.post("/login/getOTP", usercontroller.sendOTP);
+  
   
   // app.get(
   //   "/api/test/user",

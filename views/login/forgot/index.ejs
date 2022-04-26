@@ -21,10 +21,14 @@
             <form method="post" action="forgot" onsubmit="return userRegistration();">
 
                 <%- include('../_login.ejs') %>   
+                <%- include('../_retypePwd.ejs') %>   
                 <%- include('../_resetPwd.ejs') %>   
                 <div class="loginSubmit">
                     <a href="/login" class="cancelbtn" >Cancel</a>
                     <button type="submit" >Submit</button>
+                </div>
+                <div>
+                    <%= msg %>
                 </div>
             </form>
             

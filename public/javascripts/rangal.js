@@ -106,7 +106,66 @@ function showMsg(msg, time = 0){
     });
 }
 
-document.addEventListener("onload",()=>{
-    alert("entered");
-    // console.log(req.url);
-});
+function getRegister(data){
+    // let sp = document.querySelector(".output");
+    // sp.innerHTML = data.id + ' ' + data.title;
+    alert(data.msg);
+    // console.log(data.msg);
+    if(data.msg === "Success")
+    {
+        let lnkUser = document.querySelector("#lnkUser");
+        let lnkLogin = document.querySelector("#lnkLogin");
+        lnkLogin.classList.toggle('hideContent');
+        lnkUser.classList.toggle('hideContent');
+        displayRegister('none');
+        displayLogin('none');
+    }
+    
+    return false;    
+}
+
+function getOTP(){
+    let uname = document.getElementsByName('txtLoginUsrName')[0].value;
+    let email = ''
+    try{
+        email = document.getElementsByName('txtRegEmail')[0].value;
+    }
+    catch(err) {}//In the password reset page, this field is not applicable
+
+    if (uname.length == 0){
+        alert('User Name is required!');
+        return;
+    }
+
+    dat = JSON.stringify({
+        page: window.location.href,
+        uname: uname,
+        email: email
+    });
+    
+    callAPI('POST',"/login/getOTP", dat, (res)=> {alert(res.msg);});
+
+}
+
+
+//--------------------------------------------------------------------------------
+//                              Common functions
+//--------------------------------------------------------------------------------
+function callAPI(method, url, data, fn)
+{
+    //  Post request using fetch()
+    fetch(url, {
+        method: method,// Adding method type
+        body: data, // Adding body or contents to send
+        headers: { // Adding headers to the request
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then((response) =>{ // Converting to JSON
+            return response.json()})
+    .then((json) => { // Displaying results to console
+        //alert(json);
+        fn(json);//callback function
+    });
+        
+}
