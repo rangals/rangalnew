@@ -7,28 +7,29 @@ sendMail = (email, subject, msg ) =>{
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'RangalServices@gmail.com',
+        user: config.semail,
         pass: config.epass
       }
     });
     
     var mailOptions = {
-      from: 'RangalServices@gmail.com',
+      from: config.semail,
       to: email,
       subject: subject,
       html: msg
     };
     
-    // transporter.sendMail(mailOptions, function(error, info){
-    //   if (error) {
-    //     return error;
-    //   } else {
-    //     console.log('Email sent: ' + info.response);
-    //     return 'success';
-    //   }
-    // });
-    return 'success';
+    if(config.env == 'prod'){
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          return error;
+        } else {
+          console.log('Email sent: ' + info.response);
+          return 'success';
+        }
+      });
     }
+  }
     catch(err){ return 'Error occured in sending mail';}
   }
 
