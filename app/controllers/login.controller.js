@@ -8,7 +8,10 @@ exports.getIndexPage = async (req,res) =>{
 
     var ipAddress = req.header('x-forwarded-for') || req.connection.remoteAddress;
 
-    if(req.uname) user.uname = req.uname;
+    if(req.uname) {
+      user.uname = req.uname;
+      user.mode = req.mode;
+  }
     
     fs.readFile(file, (err, data) => {
 

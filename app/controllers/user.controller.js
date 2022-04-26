@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const config = require("../config/auth.config.js");
-const { authJwt } = require("../middleware");
+const { authJwt, utils  } = require("../middleware");
 const fs = require("fs");
 
 var userFile = "././app/DB/user.json";
@@ -58,11 +58,8 @@ exports.forgotUser = async (req,res) =>{
 }
 
 
-
-
 exports.registerUser = async (req, res) =>{
-  let user = {uname: '', pwd: '', firstName : '',
-  lastName : '', email : '', phone : ''};
+  let user = {};
 
     user.uname = (req.body.txtLoginUsrName ? req.body.txtLoginUsrName : '');
     user.firstName = (req.body.txtLoginUsrName ? req.body.txtLoginUsrName : '');
@@ -71,7 +68,8 @@ exports.registerUser = async (req, res) =>{
     user.email = (req.body.txtRegEmail ? req.body.txtRegEmail : '');
     user.otp = (req.body.txtOTP ? req.body.txtOTP : '');
     user.mobile = (req.body.txtRegMobile ? req.body.txtRegMobile : '');
-
+    // user.role = (req.body.rbUserRole ? req.body.rbUserRole : '');
+    user.role= 'user';
     user.pwd = bcrypt.hashSync(user.pwd, 8),
 
     fs.readFile(userFile, (err, data) => {
@@ -145,7 +143,7 @@ exports.sendOTP = async (req, res)=>{
       }
 
       try{
-        let otp = generateOTP();
+        let otp = utils.generateOTP();
         otp = otp.toString();
         let token = authJwt.getToken({uname: userName, otp: otp});
         
@@ -158,7 +156,8 @@ exports.sendOTP = async (req, res)=>{
           return;
         }
 
-        const oneDayToSeconds = 5 * 60 * 60; //15 minutes
+        const oneDayToSeconds = 15 * 60 * 60; //15 minutes
+
         res.cookie("otp", token, {maxAge: oneDayToSeconds, httpOnly: true});//{secure: false, 
         res.send('{"msg": "OTP Sent Successfully", "id": "Success"}'); 
         return;
@@ -169,7 +168,6 @@ exports.sendOTP = async (req, res)=>{
       }
     })
       
-    
 }
 
 function checkOTP(req){
@@ -183,40 +181,15 @@ function checkOTP(req){
   return false;  
 }
 
-function generateOTP(min = 100000, max = 999999) {  
-  return Math.floor(
-    Math.random() * (max - min) + min
-  )
-}
 
 function sendOTP(otp, email){
-  var nodemailer = require('nodemailer');
-    
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'RangalServices@gmail.com',
-      pass: config.epass
-    }
-  });
-  
-  var mailOptions = {
-    from: 'RangalServices@gmail.com',
-    to: email,
-    subject: 'Email verification',
-    html: '<center><h1>Rangal Softwares</h1> <br/>' 
-    +'<p>This OTP is to register/reset your details with Rangal. Rangal softwares will use these details only to identify our users and will not use for any other purpose. </p>'
-    +'<br/><br/><h3> Your OTP: </h3> <h2>' 
-    + otp + '</h2> <br/><br/> <p> Your OTP will expire in 15 minutes </p></center>'
-  };
-  console.log(email);
-  // transporter.sendMail(mailOptions, function(error, info){
-  //   if (error) {
-  //     return error;
-  //   } else {
-  //     console.log('Email sent: ' + info.response);
-  //     return 'success';
-  //   }
-  // });
-  return 'success';
+  let msg = '<center><h1>Rangal Softwares</h1> <br/>' 
+  +'<p>This OTP is to register/reset your details with Rangal. Rangal softwares will use these details only to identify our users and will not use for any other purpose. </p>'
+  +'<br/><br/><h3> Your OTP: </h3> <h2>' 
+  + otp + '</h2> <br/><br/> <p> Your OTP will expire in 15 minutes </p></center>';
+
+  let sub = 'Email verification';
+
+  return utils.sendMail(email,sub, msg);
 }
+

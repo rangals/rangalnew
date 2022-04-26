@@ -9,7 +9,8 @@ checkToken = (req, res, next) =>{
   let accessToken = req.cookies.jwt;
   jwt.verify(accessToken, config.secret, (err, decoded) => {
     if (!err) {
-      req.uname = decoded.id;
+      req.uname = decoded.id.user.uname;
+      req.mode = decoded.id.user.mode;
     }
     next();
   });

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Merienda:wght@400;700&display=swap');
 @import 'shared/variables.css';
 @import 'shared/fonts.css';
 
@@ -110,4 +110,10 @@ ul li {
   font-weight: 600;
   padding: 5px 10px;
   font-size: 1em;
+}
+
+.msg{
+  font-size: .9em;
+  background-color: #000000;
+  color: #efea24;
 }

@@ -19,13 +19,13 @@
         
         <div class="logincontainer">
             <form method="post" action="login">
-
+                <%- include('_loginMode.ejs') %> 
                 <%- include('_login.ejs') %>   
                 <div class="loginSubmit">
                     <a href="/" class="cancelbtn " >Cancel</a>
                     <button type="submit">Login</button>
                 </div>
-                <div>
+                <div class="msg">
                     <%= msg %>
                 </div>
                 <span class="psw"><a href="/login/register">Create new account</a></span>

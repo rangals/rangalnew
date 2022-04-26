@@ -18,15 +18,15 @@ header{
    align-items: center;
 }
 
-.brandName{
+.brandName a{
     color: #170eb6;
-    font-size: max(1.1em,3vw);
+    font-size: max(1.5em,3vw);
     margin: 1px;
     font-weight: 800;
-    font-style: italic;
+    font-family: 'Kaushan Script';
 }
 
-.dark .brandName{
+.dark .brandName a{
     color: #fff;
 }
 
