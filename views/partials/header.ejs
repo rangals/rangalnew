@@ -32,6 +32,19 @@
             <li><a href="/">Home</a></li>
             <!-- <li><a href="#" onclick="makeRequest('/about')">About&nbsp;Us</a></li> -->
             <li><a href="/about">About&nbsp;Us</a></li>
+
+
+            <% if (data.mode !== undefined && data.mode == 'user') {%>
+                <li><a href="/profile">User</a></li> 
+            <% }%>
+            <% if (data.mode !== undefined && data.mode == 'faculty') {%>
+                <li><a href="#">Faculty</a></li> 
+            <% }%>
+            <% if (data.mode !== undefined && data.mode == 'admin') {%>
+                <li><a href="/admin">Admin</a></li> 
+            <% }%>
+
+
             <% if (data.uname) {%>
                 <li><a href="/logout">Logout</a></li> 
             <% }%>

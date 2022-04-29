@@ -1,0 +1,15 @@
+<div>User Profile</div>
+<div class="profilePage">
+    <form method="post" action="profile/profileUpdate" >
+        <label name="txtLoginUsrName" ><%= data.uname %></label>
+        <%- include('./../login/_register.ejs') %>  
+        <%- include('./../login/_resetPwd.ejs') %>  
+        <div class="loginSubmit">
+            <a href="/profile" class="cancelbtn" >Cancel</a>
+            <button type="submit" >Update</button>
+        </div>
+        <div class="msg">
+            <%= msg %>
+        </div>
+    </form>
+</div>

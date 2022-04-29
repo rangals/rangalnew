@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const config = require('./../config/auth.config.js')
 
 
 const { authJwt } = require("../middleware");
@@ -41,14 +42,10 @@ exports.loginUser = async (req, res) =>{
             return;
         }
 
-        // user.uname = 'Welcome ' + user.uname;
         let token = authJwt.getToken({user :{uname: user.uname, mode: usr.role}});
-        // console.log('accessToken: '+token);
-        // req.session.user =  user.uname;
-        // req.session.accessToken = token;
-
+        
         const oneDayToSeconds = 60 * 60 * 60;
-        res.cookie("jwt", token, {maxAge: oneDayToSeconds, httpOnly: true, secure: process.env.NODE_ENV === 'production'? true: false})//{secure: false, 
+        res.cookie("jwt", token, {maxAge: oneDayToSeconds, httpOnly: true, secure: config.env === 'prod'? true: false})//{secure: false, 
         res.render('index', {data: user});
         return;
         

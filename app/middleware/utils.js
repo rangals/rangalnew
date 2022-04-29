@@ -4,22 +4,23 @@ sendMail = (email, subject, msg ) =>{
     var nodemailer = require('nodemailer');
       
     try{
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: config.semail,
-        pass: config.epass
-      }
-    });
-    
-    var mailOptions = {
-      from: config.semail,
-      to: email,
-      subject: subject,
-      html: msg
-    };
-    
-    if(config.env == 'prod'){
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: config.semail,
+          pass: config.epass
+        }
+      });
+      
+      var mailOptions = {
+        from: config.semail,
+        to: email,
+        subject: subject,
+        html: msg
+      };
+      
+      if(config.env !== 'prod') return 'success';
+      
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           return error;
@@ -28,10 +29,10 @@ sendMail = (email, subject, msg ) =>{
           return 'success';
         }
       });
+      
     }
-  }
     catch(err){ return 'Error occured in sending mail';}
-  }
+}
 
   generateOTP = (min = 100000, max = 999999) => {  
     return Math.floor(

@@ -6,14 +6,15 @@ const config = require("../config/auth.config.js");
 
 //This is only check the access and will not block the request
 checkToken = (req, res, next) =>{
+  
   let accessToken = req.cookies.jwt;
   jwt.verify(accessToken, config.secret, (err, decoded) => {
     if (!err) {
       req.uname = decoded.id.user.uname;
       req.mode = decoded.id.user.mode;
     }
-    next();
   });
+  next();
 }
 
 getOTPData = (req) =>{

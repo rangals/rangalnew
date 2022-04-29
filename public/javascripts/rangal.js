@@ -125,8 +125,12 @@ function getRegister(data){
 }
 
 function getOTP(){
-    let uname = document.getElementsByName('txtLoginUsrName')[0].value;
-    let email = ''
+    let page = window.location.href;
+    let uname = (page.search('profile') > -1? 
+                document.getElementsByName('txtLoginUsrName')[0].innerText 
+               : document.getElementsByName('txtLoginUsrName')[0].value);
+    let email = '';
+   
     try{
         email = document.getElementsByName('txtRegEmail')[0].value;
     }
@@ -138,7 +142,7 @@ function getOTP(){
     }
 
     dat = JSON.stringify({
-        page: window.location.href,
+        page: page,
         uname: uname,
         email: email
     });

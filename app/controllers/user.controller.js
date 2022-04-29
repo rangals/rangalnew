@@ -128,7 +128,7 @@ exports.sendOTP = async (req, res)=>{
       let valjson = JSON.parse(data);
   
       let usr = valjson["users"].find((c) => c.uname === userName);
-      email = usr?.email || email
+      email = email || usr?.email 
       if(!email){
         res.send('{"msg": "Email address not Found!", "id": "Error"}'); 
         return;
@@ -147,10 +147,10 @@ exports.sendOTP = async (req, res)=>{
         otp = otp.toString();
         let token = authJwt.getToken({uname: userName, otp: otp});
         
-        console.log("OTP: "+otp);
+        console.log("OTP: "+otp, email);
   
         let send = sendOTP(otp, email);
-        
+        console.log(send);
         if (send !== 'success'){
           res.send(`{"msg": "${send}", "id": "Error"}`); 
           return;

@@ -23,8 +23,7 @@ exports.getIndexPage = async (req,res) =>{
         let valjson = JSON.parse(data);
         console.log("Total unique Views: " +Object.keys(valjson).length);
         let viewer = valjson[ipAddress];
-        //To delete
-        // const filterUser = existUsers.filter( user => user.username !== username )
+        
         if (!viewer || viewer == undefined) {
           valjson[ipAddress] = {"count":1, "date": new Date()};
           fs.writeFile(file, JSON.stringify(valjson), (err) => {
@@ -39,7 +38,7 @@ exports.getIndexPage = async (req,res) =>{
                 valjson[ipAddress]["date"] = today;
                 valjson[ipAddress]["count"] += 1;
                 fs.writeFile(file, JSON.stringify(valjson), (err) => {
-                    if (err) throw err;
+                  if (err) return res.render('index', {'data': user, 'msg': err});
                 });
             }
         }

@@ -1,6 +1,3 @@
-// if (process.env.NODE_ENV !== 'production') {
-//     require('dotenv').load()
-//   }
   
   const express = require('express')
   const cors = require("cors");
@@ -49,6 +46,8 @@
 require('./app/routes/index.routes')(app)
 require('./app/routes/about.routes')(app)
 require('./app/routes/login.routes')(app)
+require('./app/routes/admin.routes')(app)
+require('./app/routes/profile.routes')(app)
 
 
 
