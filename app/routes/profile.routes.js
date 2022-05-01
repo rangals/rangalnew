@@ -10,5 +10,5 @@ module.exports = function(app) {
       next();
     });
     app.get("/profile",authJwt.checkToken, profilecontroller.getProfilePage);
-    app.post("/profile/profileUpdate",authJwt.checkToken, profilecontroller.updateProfile);
+    app.post("/profile/profileUpdate",authJwt.checkToken,authJwt.checkOTP, profilecontroller.updateProfile);
   };

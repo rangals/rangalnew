@@ -17,18 +17,6 @@ checkToken = (req, res, next) =>{
   next();
 }
 
-getOTPData = (req) =>{
-  
-  let accessToken = req.cookies.otp;
-  let data ={}; //This has to be declared outside of jwt.verify. otherwise it will not return anything
-  jwt.verify(accessToken, config.secret, (err, decoded) => {
-    if (!err) {
-      data.uname = decoded.id.uname;
-      data.otp = decoded.id.otp;
-    }
-  });
-  return data;
-}
 
 verifyToken = (req, res, next) => {
   let accessToken = req.cookies.jwt;
@@ -52,16 +40,36 @@ verifyToken = (req, res, next) => {
   });
 };
 
+checkOTP = (req, res, next)=>{
+  let user = {uname: '', otp: ''};
+
+  user.uname = (req.uname ? req.uname : user.uname);
+  user.uname = (req.body.txtLoginUsrName ? req.body.txtLoginUsrName : user.uname);
+  
+  user.otp = (req.body.txtOTP ? req.body.txtOTP : user.otp);
+  
+  let accessToken = req.cookies.otp;
+  jwt.verify(accessToken, config.secret, (err, decoded) => {
+    if (!err) {
+      if(decoded.id.uname === user.uname && decoded.id.otp === user.otp )
+        return next();
+    }
+    return res.status(403).send({
+      message: err
+    });
+  });
+  
+}
 
 
-getToken = (uname)=> jwt.sign({ id: uname }, config.secret, {
+getToken = (uname, mode, otp='')=> jwt.sign({ id: uname, mode: mode, otp: otp }, config.secret, {
   expiresIn: 3600 // 1 hour 
 });
 const authJwt = {
     verifyToken: verifyToken,
     getToken: getToken,
     checkToken: checkToken,
-    getOTPData: getOTPData,
+    checkOTP: checkOTP,
     // isAdmin: isAdmin,
     // isModerator: isModerator,
     // isModeratorOrAdmin: isModeratorOrAdmin

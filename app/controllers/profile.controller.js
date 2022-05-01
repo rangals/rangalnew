@@ -4,7 +4,7 @@ const fs = require("fs");
 var userFile = "././app/DB/user.json";
 
 exports.getProfilePage = async (req,res) =>{
-    let user = {};
+    let user = {uname: ''};
     if(!req.uname) return res.render('profile', {'data':user, 'msg': 'Please login!', 'id':'error'});
 
     if(req.uname) {
@@ -23,7 +23,7 @@ exports.getProfilePage = async (req,res) =>{
                 user.firstName = usr.firstName;
                 user.lastName = usr.lastName;
                 user.email = usr.email;
-                user.mobile = usr.mobile;
+                user.phone = usr.phone;
                 return res.render('profile', {'data':user, id:'success', 'msg': ''});
             }
             return res.render('profile', {'data': user, 'msg': 'User not found!', 'id':'error'});
@@ -38,12 +38,6 @@ exports.updateProfile = async (req, res) =>{
     user.uname = req.uname;
     user.otp = (req.body.txtOTP ? req.body.txtOTP : '');
 
-    console.log(user);
-    if(!checkOTP(req, user)){
-        res.render('profile',{data:user, msg:'Incorrect OTP or it expired!'});
-        return;
-    }
-   
     user.firstName = (req.body.txtLoginFirstName ? req.body.txtLoginFirstName : '');
     user.lastName = (req.body.txtLoginLastName ? req.body.txtLoginLastName : '');
     user.phone = (req.body.txtRegMobile ? req.body.txtRegMobile : '');
@@ -60,11 +54,11 @@ exports.updateProfile = async (req, res) =>{
       let usr = valjson["users"].find((c) => c.uname === user.uname);
       
       if (usr) {
-        usr.uname =user.uname;
         usr.firstName = user.firstName;
         usr.lastName = user.lastName;
         usr.phone = user.phone;
         usr.email = user.email;
+        usr.mode = usr.role;
 
         filteredList = valjson["users"].filter((c) => c.uname !== user.uname)
         filteredList.push(usr);
@@ -75,18 +69,9 @@ exports.updateProfile = async (req, res) =>{
             return;
           }
         });
-        res.render('profile',{'data':usr, 'msg':'Password reset is success!'});
+        res.render('profile',{'data':usr, 'msg':'Profile updated!'});
         return;
       } 
     });
 }
 
-
-function checkOTP(req, user){
-
-    let val = authJwt.getOTPData(req);
-   
-    if(val.uname === user.uname && val.otp === user.otp )
-      return true;
-    return false;  
-  }

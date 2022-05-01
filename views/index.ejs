@@ -1,9 +1,9 @@
 <%- include('./partials/userDetails.ejs') %>
 <section class="content">
     <div class="mainContent">
-        <p>Need a website?</p>
-        <p>Starting a website and moving your business online is easy now</p>
-        <p>We are here to make it happen for you</p>
+        <p><%= pageData.p1 %></p>
+        <%- include('./partials/editDiv.ejs', {mode: data.mode, value: pageData.p2, field: 'homepage_p2', fieldType: 'txtbox'}) %>
+        <%- include('./partials/editDiv.ejs', {mode: data.mode, value: pageData.p3, field: 'homepage_p3', fieldType: 'txtbox'}) %>
         <a class="hero-btn" href="#" onclick="showMsg('Coming Soon..',5)">View More</a>
         <!-- தொடர்புக்கு -->
     </div>

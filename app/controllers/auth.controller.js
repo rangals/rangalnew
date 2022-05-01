@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const config = require('./../config/auth.config.js')
 
 
-const { authJwt } = require("../middleware");
+const { authJwt, pageData } = require("../middleware");
 
 const fs = require("fs");
 var userFile = "././app/DB/user.json";
@@ -46,7 +46,9 @@ exports.loginUser = async (req, res) =>{
         
         const oneDayToSeconds = 60 * 60 * 60;
         res.cookie("jwt", token, {maxAge: oneDayToSeconds, httpOnly: true, secure: config.env === 'prod'? true: false})//{secure: false, 
-        res.render('index', {data: user});
+        let resData = pageData.getPageData('homepage');
+        resData.data = user;
+        res.render('index', resData);
         return;
         
       });  

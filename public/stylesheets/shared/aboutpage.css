@@ -80,12 +80,16 @@
     padding-bottom: 1em;
     color: #ffff00;
 }
-.abtDetails .abtMsg{
+.abtDetails .abtMsg, .abtDetails .abtMsg .viewMode{
     font-size: 1.2em;
     line-height: 1.4em;
     padding: 1em;
     text-align: justify;
     text-indent: 3em;
+}
+
+.abtDetails .viewMode{
+    text-align: left;
 }
 
 .abtDetails > div:last-child{
@@ -122,10 +126,14 @@
 }
 
 @media (max-width: 900px){
-    .aboutPage{
+    .aboutPage {
         grid-template-columns: 1fr;
     }
-
+    .aboutPage + div{
+        display: flex;
+        flex-direction: column;
+        max-width: 20em;
+    }
     .profile {
         margin-bottom: 1em;
     }

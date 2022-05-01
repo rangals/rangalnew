@@ -5,7 +5,7 @@
 const usercontroller = require("../controllers/user.controller");
 const logincontroller = require("../controllers/login.controller");
 const authcontroller = require("../controllers/auth.controller");
-const { authJwt } = require("../middleware");
+const { authJwt, utils } = require("../middleware");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -20,9 +20,9 @@ module.exports = function(app) {
   app.get("/login/register", usercontroller.getRegisterPage);
   app.get("/login/forgot", usercontroller.getForgotPage);
   app.post("/login", authcontroller.loginUser);
-  app.post("/login/register", usercontroller.registerUser);
-  app.post("/login/forgot", usercontroller.forgotUser);
-  app.post("/login/getOTP", usercontroller.sendOTP);
+  app.post("/login/register",authJwt.checkOTP, usercontroller.registerUser);
+  app.post("/login/forgot",authJwt.checkOTP, usercontroller.forgotUser);
+  app.post("/login/getOTP", usercontroller.sendOTP, utils.sendMail);
   
   
   // app.get(

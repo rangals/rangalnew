@@ -151,6 +151,72 @@ function getOTP(){
 
 }
 
+//--------------------------------------------------------------------------------
+//                              Edit Div Functions
+//--------------------------------------------------------------------------------
+
+function editMode(){
+    
+    document.querySelector('.editModeOn > .material-icons.editOFF').classList.toggle('contentHide');
+    document.querySelector('.editModeOn > .material-icons.editOn').classList.toggle('contentHide');
+
+    let content = document.querySelectorAll('.editMode')
+    content.forEach(c => c.classList.toggle('contentHide'));
+
+    let vcontent = document.querySelectorAll('.viewMode');
+    vcontent.forEach(c => c.classList.toggle('contentHide'));
+
+}
+
+function editContent(ctrl){
+    let label = document.getElementById(ctrl);
+    label.querySelector('.editContent').classList.toggle('contentHide');
+
+    let closecontent = label.querySelectorAll('.closeContent');
+    closecontent.forEach(c => c.classList.toggle('contentHide'));
+}
+
+function cancelChange(ctrl){
+    let label = document.getElementById(ctrl);
+    if(ctrl.search('txtarea') > -1)
+        label.getElementsByTagName('textarea')[0].value =  document.querySelector('#'+ctrl+' + .viewMode').textContent.trim();
+    if(ctrl.search('txtbox') > -1)
+        label.querySelector('input.txtbox').value =  document.querySelector('#'+ctrl+' + .viewMode').textContent.trim();
+
+    resetControl(ctrl);
+}
+
+function saveChange(ctrl){
+    let control = '';
+    let label = document.getElementById(ctrl);
+    if(ctrl.search('txtarea') > -1)
+        control = label.getElementsByTagName('textarea')[0]
+    if(ctrl.search('txtbox') > -1)
+        control = label.querySelector('input.txtbox');
+
+    if(control){
+        let field = control.attributes['field'].name;
+        let value = control.value;
+        
+        // alert({field: field, value : value});
+        document.querySelector('#'+ctrl+' + .viewMode').innerText = value;
+        
+        resetControl(ctrl);
+        return;
+    }
+   alert("Couldn't find the input field!");
+
+}
+
+function resetControl(ctrl){
+    document.querySelector('#'+ctrl+' > input').checked = false;    
+
+    let is = document.querySelectorAll('#'+ctrl+' label');
+    document.querySelector('#'+ctrl+' > i').classList.toggle('contentHide');
+    is[0].classList.toggle('contentHide');
+    is[1].classList.toggle('contentHide');
+}
+
 
 //--------------------------------------------------------------------------------
 //                              Common functions

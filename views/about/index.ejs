@@ -11,14 +11,14 @@
         <div class="profileInfo">
             <div class="tooltip" onclick="copyData('ttEmail')" onmouseout="outFunc('ttEmail')">
                 <span class="tooltiptext" id="ttEmail" >Click to Copy</span>
-                <span> <i class="material-icons">email</i> rangalsoftwares@gmail.com</span>
+                <span> <i class="material-icons">email</i> <%= pageData.sitemail%></span>
             </div>
             <div class="tooltip" onclick="copyData('ttContact')" onmouseout="outFunc('ttContact')">
                 <span class="tooltiptext" id="ttContact" >Click to Copy</span>
-                <span> <i class="material-icons">call</i> + 91 6374694979</span>
+                <span> <i class="material-icons">call</i> <%= pageData.sitenum%> </span>
             </div>
             <div>
-                <span> <i class="material-icons">location_on</i>Puducherry, India</span>
+                <span> <i class="material-icons">location_on</i><%= pageData.siteloc%></span>
             </div>
         </div>
     </div>
@@ -35,15 +35,17 @@
     <div class="abtDetails card">
         <span>About</span>
         <div class="abtMsg">
-            In this digital era, having the feature to access your business online is inevitable to sustain.
-            <b>Rangal softwares </b> support you to bring your business online with less cost but with more features.
-            We give more importance to our client satisfaction.
+            <%- include('./../partials/editDiv.ejs', {mode: data.mode, value: pageData.abtmsg, field: 'aboutpage_abtmsg', fieldType: 'txtarea'}) %>
         </div>
         <div>
             <div>Work Experience</div>
-            <div>10+ years</div>
+            <div>
+                <%- include('./../partials/editDiv.ejs', {mode: data.mode, value: pageData.exp, field: 'aboutpage_exp', fieldType: 'txtbox'}) %>
+            </div>
             <div>Skills Supported</div>
-            <div>Express, NodeJS, ASP.Net, C#.NET, MS SQL Server, MongoDB</div>
+            <div>
+                <%- include('./../partials/editDiv.ejs', {mode: data.mode, value: pageData.skills, field: 'aboutpage_skills', fieldType: 'txtbox'}) %>
+            </div>
         </div>
     </div>
     <div></div>

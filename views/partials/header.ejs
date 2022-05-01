@@ -19,6 +19,15 @@
         </label> -->
         </div>
         <div>
+            <% if (data.mode !== undefined && data.mode == 'admin') {%>
+                <label class="editModeOn">
+                    <i class="material-icons editOn">edit</i>
+                    <i class="material-icons editOFF contentHide">cancel</i>
+                    <input type="checkbox"  onclick="editMode();"/>
+                </label>
+            <% }%>
+        </div>
+        <div>
             <!-- <label>
                 <div class="mode">
                     <input onclick="changeMode()" type="checkbox" />

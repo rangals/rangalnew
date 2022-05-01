@@ -1,0 +1,27 @@
+<% if (mode !== undefined && mode == 'admin') {%>
+    
+    <label id="lbl<%= fieldType+field %>"  class="editMode contentHide">
+        <i class="material-icons editContent">edit</i>
+        <input type="checkbox" onclick="editContent('lbl<%= fieldType+field %>');" 
+            class="chktxtareaEdit"/>
+        <label class="closeContent contentHide">
+            <i class="material-icons">save</i>
+            <input type="checkbox" onclick="saveChange('lbl<%= fieldType+field %>')" />
+        </label>
+        <label class="closeContent contentHide">
+            <i class="material-icons">cancel</i>
+            <input type="checkbox" onclick="cancelChange('lbl<%= fieldType+field %>')" />
+        </label>
+        <% if (fieldType == 'txtarea') {%>
+        <textarea class="txtarea" field="<%= field %>" >
+            <%= value %>
+        </textarea>
+        <% }%>
+        <% if (fieldType == 'txtbox') {%>
+            <input type="text" value="<%= value %>" class="txtbox" field="<%= field %>"  />
+        <% }%>
+    </label>
+<% }%>
+<div class="viewMode">
+    <%= value %>
+</div>

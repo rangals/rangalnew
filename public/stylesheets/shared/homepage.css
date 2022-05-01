@@ -119,7 +119,10 @@
 }
 
 .mainContent{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9em;
+    align-items: center;
 }
 
 .mainContent p:first-child{
@@ -128,7 +131,8 @@
 }
 
 .hero-btn{
-    /* display: inline-block; */
+    width: fit-content;
+    align-self: center;
     text-decoration: none;
     color: #fff;
     border: 1px solid #fff;
