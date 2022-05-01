@@ -1,7 +1,7 @@
 module.exports = {
-    secret: "rangal",
+    secret: "",
     PORT: 8081,
-    epass: 'RS18thOct2022',
+    epass: '',
     env: 'dev',
     semail: 'RangalServices@gmail.com'
   };
