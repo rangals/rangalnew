@@ -93,7 +93,7 @@ exports.registerUser = async (req, res) =>{
     
           let token = authJwt.getToken({user :{uname: user.uname, mode: user.role}});
           resData.data = {uname: user.uname, mode: user.role};
-          const oneDayToSeconds = 24 * 60 * 60;
+          const oneDayToSeconds = 60 * 60 * 60 * 60;
           res.cookie("jwt", token, {maxAge: oneDayToSeconds, httpOnly: true, secure: process.env.NODE_ENV === 'production'? true: false})//{secure: false, 
           res.render('index', resData)
         } else {
@@ -131,7 +131,8 @@ exports.sendOTP = (req, res, next)=>{
       let valjson = JSON.parse(data);
   
       let usr = valjson["users"].find((c) => c.uname === userName);
-      email = email || usr?.email 
+      email = usr ? (usr.email ? usr.email : '' ) : '';
+      email = req.body.email ? req.body.email : email;
       if(!email){
         res.send('{"msg": "Email address not Found!", "id": "Error"}'); 
         return;
@@ -160,10 +161,8 @@ exports.sendOTP = (req, res, next)=>{
         req.msgcontent = msg;
         req.email= email;
         req.subject = sub;
-
-        let token = authJwt.getToken({uname: userName, otp: otp});
-        const oneDayToSeconds = 60 * 60 * 60;
-        res.cookie("otp", token, {maxAge: oneDayToSeconds, httpOnly: true, secure: config.env === 'prod'? true: false})//{secure: false, 
+        req.otp = otp;
+        req.uname = userName;
         next();
       }
       catch (e){

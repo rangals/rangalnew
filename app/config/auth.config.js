@@ -1,7 +1,7 @@
 module.exports = {
     secret: "",
-    PORT: 8081,
+    PORT: 8080,
     epass: '',
-    env: 'dev',
+    env: 'prod',
     semail: 'RangalServices@gmail.com'
   };

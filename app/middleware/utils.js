@@ -8,6 +8,8 @@ const authJwt = require("./authJwt.js");
     let email = req.email;
     let subject = req.subject;
     let msg = req.msgcontent;
+    let otp = req.otp;
+    let uname = req.uname;
     try{
       var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -33,8 +35,8 @@ const authJwt = require("./authJwt.js");
         } else {
           console.log('Email sent: ' + info.response);
           const oneDayToSeconds = 15 * 60 * 60; //15 minutes
-          let token = authJwt.getToken({uname: userName, otp: otp});
-          res.cookie("otp", token, {maxAge: oneDayToSeconds, httpOnly: true});//{secure: false, 
+          let token = authJwt.getToken({uname: uname, otp: otp});
+          res.cookie("otp", token, {maxAge: oneDayToSeconds, httpOnly: true, secure: false});//{secure: false, 
           return res.send({msg: "OTP Sent Successfully"});
         }
       });
